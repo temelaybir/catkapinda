@@ -1,6 +1,7 @@
 -- Migration: Fix payment_method for existing orders
 -- Date: 2025-10-11
 -- Description: Set payment_method based on payment_status and notes
+-- IMPORTANT: Run 20251011_add_payment_method_column.sql FIRST!
 
 -- Update orders with awaiting_payment status to bank_transfer
 UPDATE orders

@@ -124,12 +124,12 @@ function SearchPageContent() {
     if (!query.trim()) return []
 
     let results = products.filter(product => {
-      const query = query.toLowerCase()
+      const searchTerm = query.toLowerCase()
       return (
-        product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query) ||
-        product.brand.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query)
+        product.name?.toLowerCase().includes(searchTerm) ||
+        product.description?.toLowerCase().includes(searchTerm) ||
+        product.brand?.toLowerCase().includes(searchTerm) ||
+        product.category?.toLowerCase().includes(searchTerm)
       )
     })
 
@@ -167,9 +167,10 @@ function SearchPageContent() {
         break
       default: // relevance
         // Basit relevance sıralaması - daha gelişmiş algoritma eklenebilir
+        const searchTerm = query.toLowerCase()
         results.sort((a, b) => {
-          const aScore = a.name.toLowerCase().includes(query.toLowerCase()) ? 2 : 1
-          const bScore = b.name.toLowerCase().includes(query.toLowerCase()) ? 2 : 1
+          const aScore = a.name?.toLowerCase().includes(searchTerm) ? 2 : 1
+          const bScore = b.name?.toLowerCase().includes(searchTerm) ? 2 : 1
           return bScore - aScore
         })
     }
